@@ -34,28 +34,13 @@ def encode(password):
     return password_as_string
 
 
-def decode(password):
-
-    # Make password a list
-    password = list(password)
-
-    # Make each item in list an integer
-    # Adds three to each number
-    for items in range(len(password)-1, -1, -1):
-        password[items] = int(password[items])
-
-    # Checks to see if a number is more than a single digit
-        for num in range(1, 4):
-            if password[items] == 0:
-                password[items] = 10
-            password[items] -= 1
-
-    # Converts the encoded password back into a string
-    password_as_string = ""
-    for items in range(0, len(password)):
-        password_as_string = password_as_string + str(password[items])
-
-    return password_as_string
+#This is the new decode function
+def decode(encoded_password):
+    decoded_password = ""
+    for digit in encoded_password:
+        shifted_digit = (int(digit) - 3) % 10
+        decoded_password += str(shifted_digit)
+    return decoded_password
 
 
 if __name__ == "__main__":
